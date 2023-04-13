@@ -1,0 +1,57 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[acronym]{glossaries}
+\include{acros}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\graphicspath{ {images/} }
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{mathtools}
+%\usepackage{minted}
+\usepackage{tcolorbox}
+\usepackage[margin=1in]{geometry}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{hhline}
+\usepackage{indentfirst}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\renewcommand{\arraystretch}{1.2}
+\linespread{1.3}
+
+
+\begin{document}
+%
+\title{Implementation of the Spalart-Allmaras Turbulence Model in Moltres}
+\author{Sun Myung Park}
+\date{}
+%
+\maketitle
+%
+In fluid dynamics, turbulent flow is characterized by unsteady, irregular, and chaotic changes in
+flow velocity as opposed to neat, parallel flow layers in laminar flow. Turbulent flows in
+\glspl{MSR} induce significant turbulent diffusion effects on heat transfer and \gls{DNP} drift.
+The resulting temperature and \gls{DNP} distributions strongly influence the neutron flux through
+strong temperature reactivity feedback and delayed neutron emission in different neutron importance
+regions, respectively. Flow separation and recirculation zones may also occur in \gls{MSR} designs
+with significant wall curvature. Temperature hotspots occurring in recirculation zones may induce
+thermal stresses on nearby structural components and cause temperature-induced reactivity effects.
+In particular, the \gls{MCFR} will experience significant turbulent flow owing to its
+pool-type \gls{MSR} design. When modeling the \gls{MCFR}, we require a turbulence model to
+accurately model turbulent effects and associated multiphysics interactions. Otherwise, flow
+modeling in coupled neutronics and thermal-hydraulics simulations of the \gls{MCFR} will be limited
+to laminar flow. These simulations with laminar flow modeling will likely fail to capture the true
+behavior of the \gls{MCFR} in steady-state operation and in transient accident scenarios.
+
+The \gls{MSR} simulation tool we're employing to model the \gls{MCFR}, Moltres, does not
+currently have turbulence modeling capability for simulating turbulent flows in
+\glspl{MSR}. We propose implementing the \gls{SA} model, a one-equation turbulence model,
+in Moltres to address this issue. Since Moltres is built on the \gls{MOOSE} framework, we can
+leverage the advanced and developer-friendly features in \gls{MOOSE} to implement an \gls{SA} model
+that is highly scalable and compatible with the existing fluid dynamics modeling infrastructure in
+\gls{MOOSE}. Once implemented, we will verify and validate the model against published data for the
+backward-facing step, a common reference problem for turbulence modeling. This work and the
+subsequent demonstration of the \gls{SA} model for turbulent flow modeling in a \gls{MCFR} model
+will be submitted for conference publication.
+
+\end{document}
